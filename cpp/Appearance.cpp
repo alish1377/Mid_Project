@@ -1,7 +1,14 @@
 #include "Appearance.h"
 
 
-void appearance(size_t Row , size_t Column, size_t x_s , size_t y_s , size_t x_e , size_t y_e , std::string algorithm){
+void appearance(){
+    std::string algorithm{};
+    size_t Row{};
+    size_t Column{};
+    size_t x_s{};
+    size_t y_s{};
+    size_t x_e{};
+    size_t y_e{};
     std::cout<<"\033[1;36m"<<std::endl;
     std::cout<<"Welcome!!\n"<<"Please Enter some information about maze and algorithms"<<std::endl;
     std::cout<<"\033[1;35m"<<std::endl;
