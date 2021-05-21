@@ -1,12 +1,14 @@
 CXX = g++
 CXXFLAGS = -std=c++2a -Wall -I h -I /usr/local/include/gtest/ -c
 LXXFLAGS = -std=c++2a -Ih -pthread
-OBJECTS = ./obj/BFS.o ./obj/main.o ./obj/DFS.o ./obj/Appearance.o
+OBJECTS = ./obj/BFS.o ./obj/main.o ./obj/DFS.o ./obj/Appearance.o ./obj/make_maze.o
 TARGET = main
 
 
 $(TARGET): $(OBJECTS)
 	$(CXX) $(LXXFLAGS) -o $(TARGET) $(OBJECTS) $(GTEST)
+./obj/make_maze.o: ./cpp/make_maze.cpp
+	$(CXX) $(CXXFLAGS) ./cpp/make_maze.cpp -o ./obj/make_maze.o
 ./obj/Appearance.o: ./cpp/Appearance.cpp
 	$(CXX) $(CXXFLAGS) ./cpp/Appearance.cpp -o ./obj/Appearance.o
 ./obj/BFS.o: ./cpp/BFS.cpp

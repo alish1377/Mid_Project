@@ -1,4 +1,5 @@
 #include "Appearance.h"
+#include "make_maze.h"
 
 
 void appearance(){
@@ -39,7 +40,8 @@ void appearance(){
     std::cout<<"\033[1;39m";
     std::cin>>algorithm;
     std::cout<<"\033[0m";
-    std::array<size_t,6> inputs ={Row , Column , x_s , y_s, x_e , y_e};
-    dfs d(inputs , algorithm);
-    d.make_maze();
+    std::vector<std::vector<char>> maze;
+    maze = make_maze(Row , Column);
+    std::array<size_t,4> inputs ={x_s , y_s, x_e , y_e};
+    dfs d(maze , inputs , algorithm);
 }
