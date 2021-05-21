@@ -9,8 +9,6 @@ void appearance(){
     size_t y_s{};
     size_t x_e{};
     size_t y_e{};
-    std::cout<<"\033[1;36m"<<std::endl;
-    std::cout<<"Welcome!!\n"<<"Please Enter some information about maze and algorithms"<<std::endl;
     std::cout<<"\033[1;35m"<<std::endl;
     std::cout<<"Enter #Rows of Maze: ";
     std::cout<<"\033[1;39m";
@@ -37,8 +35,11 @@ void appearance(){
     std::cin>> y_e;
     std::cout<<"\033[0m"<<std::endl;
     std::cout<<"\033[1;33m";
-    std::cout<<"Choose algorthms (bfs/dfs) :";
+    std::cout<<"Choose algorithms (bfs/dfs) :";
     std::cout<<"\033[1;39m";
     std::cin>>algorithm;
     std::cout<<"\033[0m";
+    std::array<size_t,6> inputs ={Row , Column , x_s , y_s, x_e , y_e};
+    dfs d(inputs , algorithm);
+    d.make_maze();
 }
