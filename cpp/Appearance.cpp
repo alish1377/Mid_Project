@@ -4,12 +4,12 @@
 
 void appearance(){
     std::string algorithm{};
-    size_t Row{};
-    size_t Column{};
-    size_t x_s{};
-    size_t y_s{};
-    size_t x_e{};
-    size_t y_e{};
+    int Row{};
+    int Column{};
+    int x_s{};
+    int y_s{};
+    int x_e{};
+    int y_e{};
     std::cout<<"\033[1;35m"<<std::endl;
     std::cout<<"Enter #Rows of Maze: ";
     std::cout<<"\033[1;39m";
@@ -42,6 +42,6 @@ void appearance(){
     std::cout<<"\033[0m";
     std::vector<std::vector<char>> maze;
     maze = make_maze(Row , Column);
-    std::array<size_t,4> inputs ={x_s , y_s, x_e , y_e};
+    std::array<int,4> inputs ={x_s , y_s, x_e , y_e};
     dfs d(maze , inputs , algorithm);
 }

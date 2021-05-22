@@ -9,19 +9,22 @@
 class dfs
 {
 public:
-    dfs() = default;
-    dfs(std::vector<std::vector<char>> , std::array<size_t,4> ,std::string );
+    dfs(std::vector<std::vector<char>> , std::array<int,4> ,std::string );
     std::string algorithm;
-    std::vector<std::vector<size_t>>dfs_maze(std::vector<std::vector<char>>);
-    void check_maze(size_t , size_t);
-    std::vector<std::vector<size_t>>ans;
+    std::vector<std::vector<int>>dfs_maze(std::vector<std::vector<char>>);
+    void check_maze(int , int);
+    std::vector<std::vector<int>>temp_ans;
+    std::vector<std::vector<int>>comp_ans;
+
 
 private:
     std::vector<std::vector<char>>maze;
-    size_t x_s;
-    size_t x_e;
-    size_t y_s;
-    size_t y_e;
+    int Rows;
+    int Columns;
+    int x_s;
+    int x_e;
+    int y_s;
+    int y_e;
 };
 
 #endif 
