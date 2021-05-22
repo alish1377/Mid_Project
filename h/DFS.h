@@ -9,10 +9,10 @@
 class dfs
 {
 public:
-    dfs(std::vector<std::vector<char>> , std::array<int,4> ,std::string );
-    std::string algorithm;
-    std::vector<std::vector<int>>dfs_maze(std::vector<std::vector<char>>);
+    dfs(std::vector<std::vector<char>> , std::array<int,4>);
+    void dfs_maze(std::vector<std::vector<char>>);
     void check_maze(int , int);
+    void show();
     std::vector<std::vector<int>>temp_ans;
     std::vector<std::vector<int>>comp_ans;
 

@@ -2,6 +2,7 @@
 #include "make_maze.h"
 
 
+
 void appearance(){
     std::string algorithm{};
     int Row{};
@@ -18,6 +19,8 @@ void appearance(){
     std::cout<<"Enter #Columns of Maze: ";
     std::cout<<"\033[1;39m";
     std::cin>>Column;
+    std::vector<std::vector<char>> maze;
+    maze = make_maze(Row , Column);
     std::cout<<"\033[1;32m"<<std::endl;
     std::cout<< "X_Start : ";
     std::cout<<"\033[1;39m";
@@ -40,8 +43,11 @@ void appearance(){
     std::cout<<"\033[1;39m";
     std::cin>>algorithm;
     std::cout<<"\033[0m";
-    std::vector<std::vector<char>> maze;
-    maze = make_maze(Row , Column);
     std::array<int,4> inputs ={x_s , y_s, x_e , y_e};
-    dfs d(maze , inputs , algorithm);
+    if(algorithm == "dfs"){
+        dfs d{maze , inputs};
+        d.dfs_maze(maze);
+        d.show();
+    }
+    //else if(algorithm == "bfs")
 }
