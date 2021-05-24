@@ -15,7 +15,6 @@ int main(int argc, const char** argv) {
     std::cout<<"Welcome!!\n"<<"Please Enter some information about maze and algorithms"<<std::endl;
     appearance();
     /*std::cout<<"salam"<<std::endl;
-    std::vector<std::vector<size_t>> a;
     a.push_back(std::vector<size_t> {1,2});
     a.push_back(std::vector<size_t> {2,2});
     a.push_back(std::vector<size_t> {21,2});
