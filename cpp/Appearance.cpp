@@ -49,5 +49,9 @@ void appearance(){
         d.dfs_maze(maze);
         d.show();
     }
-    //else if(algorithm == "bfs")
+    else if(algorithm == "bfs")
+    {
+        bfs b{maze , inputs};
+        b.bfs_maze(maze);
+    }
 }

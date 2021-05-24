@@ -13,6 +13,7 @@
 int main(int argc, const char** argv) {
     std::cout<<"\033[1;36m"<<std::endl;
     std::cout<<"Welcome!!\n"<<"Please Enter some information about maze and algorithms"<<std::endl;
+    std::vector<std::shared_ptr <int>> children = {nullptr , nullptr , nullptr , nullptr};
     appearance();
     /*std::cout<<"salam"<<std::endl;
     a.push_back(std::vector<size_t> {1,2});

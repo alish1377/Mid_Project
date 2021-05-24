@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "DFS.h"
+#include "BFS.h"
 #include <stdio.h>      
 #include <stdlib.h> 
 

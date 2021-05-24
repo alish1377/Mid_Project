@@ -14,10 +14,18 @@ public:
             std::shared_ptr <Node> pparent{nullptr};
             std::vector<std::shared_ptr <Node>> children = {nullptr , nullptr , nullptr , nullptr};
     };
+    bfs(std::shared_ptr<Node>root);
     bfs(std::vector<std::vector<char>> , std::array<int,4>);
     void bfs_maze(std::vector<std::vector<char>> maze);
-    void make_bfs_tree(std::shared_ptr<Node>);
-    std::vector<std::shared_ptr <Node>> bfs_ans;
+    void make_bfs_tree(std::vector<std::shared_ptr <Node>>);
+    void solve_bfs_tree();
+    void Path_result();
+    void show();
+    
+    std::shared_ptr<Node> proot;
+    std::shared_ptr<Node> end_node{};
+    std::vector<std::shared_ptr<Node>> result_path;
+    std::vector<std::shared_ptr<Node>> level_node;
 private:
     std::vector<std::vector<char>>maze;
     int Rows;
