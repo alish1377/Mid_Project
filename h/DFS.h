@@ -5,6 +5,8 @@
 #include "algorithm"
 #include <array>
 #include <vector>
+#include <thread>
+#include <chrono>
 
 class dfs
 {

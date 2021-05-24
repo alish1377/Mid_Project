@@ -72,8 +72,16 @@ void dfs::show(){
                     break;
                 }
             }
-            if(check==1)
-                std::cout<<"\033[1;35m"<<maze[i][j]<<" "<<"\033[0m";
+            if(check==1){
+                long int k{};
+                while (k < 100000000)
+                {
+                    //std::cout<<"hello"<<std::endl;
+                    k++;
+                }
+                //std::cout<<"salam"<<std::endl;
+                std::cout<<"\033[1;45m"<<maze[i][j]<<" "<<"\033[0m";
+            }
             else
                 std::cout<<maze[i][j]<<" ";
 
