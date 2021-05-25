@@ -23,17 +23,24 @@ bfs::bfs(std::shared_ptr<Node>proot , std::vector<std::vector<char>>_maze , std:
 void bfs::bfs_maze(std::vector<std::vector<char>> maze){
     proot->x = x_s;
     proot->y = y_s;
-    //std::cout<<"salam"<<std::endl;
     std::vector<std::shared_ptr <Node>> root ;
     root.push_back(proot);
     all_nodes.push_back(proot);
-    make_bfs_tree(root);
+    if(maze[x_s][y_s] == '#' || maze[x_e][y_e] == '#'  )
+    {
+        std::cout<<"\033[1;31m";
+        std::cout<<"Illegal Inputs or Outpus"<<std::endl;
+        std::cout<<"\033[1;39m";
+    }
+    else
+        make_bfs_tree(root);
 }
 
 void bfs::make_bfs_tree(std::vector<std::shared_ptr <Node>>level_node){
     //std::cout<<"hello1"<<std::endl;
     //std::cout<<level_node[0]->y<<std::endl;
     std::vector<std::shared_ptr <Node>> level;
+    int check_ans{};
     for(size_t j{}; j < level_node.size() ; j++){
         int child_i{};
         int coordinate[4][2] = {{0,1},{1,0},{0,-1},{-1,0}};
@@ -43,7 +50,6 @@ void bfs::make_bfs_tree(std::vector<std::shared_ptr <Node>>level_node){
             int x{};
             int y{};
             x = level_node[j]->x + coordinate[i][0];
-            //std::cout<<x<<std::endl;
             y = level_node[j]->y + coordinate[i][1];
             for (size_t k = 0; k < all_nodes.size(); k++)
             {
@@ -57,11 +63,11 @@ void bfs::make_bfs_tree(std::vector<std::shared_ptr <Node>>level_node){
             else if(maze[x][y] == '#')
                 continue;
             else if(check==1){
-                std::cout<<"hello3"<<std::endl;
                 check=0;
                 continue;
             }
             else{
+                check_ans =1;
                 auto check_node{std::make_shared<bfs::Node>(x,y)};
                 check_node->x = x;
                 check_node->y = y;
@@ -70,50 +76,44 @@ void bfs::make_bfs_tree(std::vector<std::shared_ptr <Node>>level_node){
                 all_nodes.push_back(check_node);
                 level.push_back(check_node);
                 child_i++;
-                std::cout<<"hello2"<<std::endl;
             }
             if(level[level.size()-1]->x == x_e && level[level.size()-1]->y == y_e )
             {
-                std::cout<<"hello3"<<std::endl;
                 end_node = level[level.size()-1];
                 break;
             }
         }
+        if(check_ans==0){
+            std::cout<<"\033[1;31m";
+            std::cout<<"Sorry\nThese coordinates that you choose have no answere"<<std::endl;
+            std::cout<<"\033[1;39m";
+            break;
+        }
+        if(end_node != nullptr)
+            break;
     }
-    num++;
-    if(num<3){
-        //std::cout<<level.size()<<std::endl;
+    if(end_node == nullptr && check_ans==1){
         make_bfs_tree(level);
     }
-    /*if(end_node == nullptr){
-        std::cout<<level.size()<<std::endl;
-        make_bfs_tree(level);
-        std::cout<<"hello4"<<std::endl;
-    }*/
+    else if(end_node != nullptr && check_ans==1)
+        Path_result();
 }
 
-/*void bfs::Path_result(){
-    std::shared_ptr<Node> temp_check;
-    //std::cout<<end_node<<std::endl;
-    //std::cout<<"hello1"<<std::endl;
-    temp_check = end_node;
-    while(temp_check){
-        result_path.push_back(temp_check);
-        temp_check = temp_check->pparent;
+void bfs::Path_result(){
+    while(end_node){
+        result_path.push_back(end_node);
+        end_node = end_node->pparent;
     }
-    //std::cout<<result_path.size()<<std::endl;
     show();
-}*/
+}
 
-/*void bfs::show(){
-    //std::cout<<"hello2"<<std::endl;
-    //std::cout<<result_path.size()<<std::endl;
+void bfs::show(){
     for (size_t i = 0; i < maze.size(); i++)
     {
         for (size_t j = 0; j < maze[i].size(); j++)
         {
             int check = 0;
-            for (size_t k; k < result_path.size() ; k++){
+            for (size_t k{}; k < result_path.size() ; k++){
                 if( (result_path[k] -> x) == static_cast<int>(i) && (result_path[k] -> y) == static_cast<int>(j) ){
                     check = 1;
                     break;
@@ -128,4 +128,4 @@ void bfs::make_bfs_tree(std::vector<std::shared_ptr <Node>>level_node){
         }
         std::cout<<std::endl;
     }
-}*/
+}

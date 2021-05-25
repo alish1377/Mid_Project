@@ -15,6 +15,7 @@ public:
     void dfs_maze(std::vector<std::vector<char>>);
     void check_maze(int , int);
     void show();
+    int check_ans;
     std::vector<std::vector<int>>temp_ans;
     std::vector<std::vector<int>>comp_ans;
 
