@@ -1,9 +1,15 @@
 #include "BFS.h"
 
-bfs::bfs(std::vector<std::vector<char>>_maze , std::array<int,4> _inputs)
+bfs::Node::Node(int x_s , int y_s){
+    this->x = x_s;
+    this->y = y_s;
+}
+
+bfs::bfs(std::shared_ptr<Node>proot , std::vector<std::vector<char>>_maze , std::array<int,4> _inputs)
     : maze(_maze)
 {
     std::cout<<"bfs constructor"<<std::endl;
+    this->proot = proot;
     auto it = _inputs.begin();
     x_s = *(it);
     y_s = *(it+1);
@@ -13,13 +19,11 @@ bfs::bfs(std::vector<std::vector<char>>_maze , std::array<int,4> _inputs)
     Columns = maze[0].size();
 
 }
-bfs::bfs(std::shared_ptr<Node>proot){
-    this->proot = proot;
-}
 
 void bfs::bfs_maze(std::vector<std::vector<char>> maze){
     proot->x = x_s;
     proot->y = y_s;
+    //std::cout<<"salam"<<std::endl;
     std::vector<std::shared_ptr <Node>> root ;
     root.push_back(proot);
     make_bfs_tree(root);
@@ -41,7 +45,6 @@ void bfs::make_bfs_tree(std::vector<std::shared_ptr <Node>>level_node){
                 check = 1;
                 break;
             }
-            std::cout<<x<<" "<<y<<std::endl;
             if(x < 0 || x >= Rows || y < 0 || y >= Columns)
                 continue;
             else if(maze[x][y] == '#')
@@ -51,8 +54,8 @@ void bfs::make_bfs_tree(std::vector<std::shared_ptr <Node>>level_node){
                 continue;
             }
             else{
-                std::cout<<"salam"<<std::endl;
-                std::shared_ptr<Node> check_node;
+                auto check_node{std::make_shared<bfs::Node>(x,y)};
+                std::cout<<check_node<<std::endl;
                 check_node->x = x;
                 check_node->y = y;
                 check_node->pparent = level_node[j];

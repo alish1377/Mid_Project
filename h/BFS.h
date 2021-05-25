@@ -13,9 +13,9 @@ public:
             int y;
             std::shared_ptr <Node> pparent{nullptr};
             std::vector<std::shared_ptr <Node>> children = {nullptr , nullptr , nullptr , nullptr};
+            Node(int, int);
     };
-    bfs(std::shared_ptr<Node>root);
-    bfs(std::vector<std::vector<char>> , std::array<int,4>);
+    bfs(std::shared_ptr<Node>root,std::vector<std::vector<char>> , std::array<int,4>);
     void bfs_maze(std::vector<std::vector<char>> maze);
     void make_bfs_tree(std::vector<std::shared_ptr <Node>>);
     void solve_bfs_tree();

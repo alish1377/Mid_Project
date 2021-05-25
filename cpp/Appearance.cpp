@@ -51,7 +51,8 @@ void appearance(){
     }
     else if(algorithm == "bfs")
     {
-        bfs b{maze , inputs};
-        b.bfs_maze(maze);
+        auto N{std::make_shared<bfs::Node>(x_s , y_s)};
+        bfs b{N , maze , inputs};
+        //b.bfs_maze(maze);
     }
 }
