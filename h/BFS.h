@@ -22,10 +22,12 @@ public:
     void Path_result();
     void show();
     
+    int num{};
     std::shared_ptr<Node> proot;
     std::shared_ptr<Node> end_node{};
     std::vector<std::shared_ptr<Node>> result_path;
     std::vector<std::shared_ptr<Node>> level_node;
+    std::vector<std::shared_ptr<Node>> all_nodes;
 private:
     std::vector<std::vector<char>>maze;
     int Rows;

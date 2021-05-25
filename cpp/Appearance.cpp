@@ -53,6 +53,7 @@ void appearance(){
     {
         auto N{std::make_shared<bfs::Node>(x_s , y_s)};
         bfs b{N , maze , inputs};
-        //b.bfs_maze(maze);
+        b.bfs_maze(maze);
+        b.Path_result();
     }
 }
