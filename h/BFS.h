@@ -22,7 +22,7 @@ public:
     void Path_result();
     void show();
     
-    std::shared_ptr<Node> proot;
+    std::shared_ptr<Node> proot{};
     std::shared_ptr<Node> end_node{};
     std::vector<std::shared_ptr<Node>> result_path;
     std::vector<std::shared_ptr<Node>> level_node;

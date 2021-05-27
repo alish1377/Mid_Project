@@ -16,14 +16,22 @@ dfs::dfs(std::vector<std::vector<char>>_maze , std::array<int,4> _inputs)
 void dfs::dfs_maze(std::vector<std::vector<char>> maze){
     temp_ans.push_back(std::vector <int> {x_s , y_s});
     comp_ans.push_back(std::vector <int> {x_s , y_s});
-    if(maze[x_s][y_s] == '#' || maze[x_e][y_e] == '#'  )
+    if(x_s < 0 || x_s > Rows-1 ||  y_s < 0 || y_s > Columns-1)
     {
         std::cout<<"\033[1;31m";
-        std::cout<<"Illegal Inputs or Outpus"<<std::endl;
+        std::cout<<"Input is out of maze range"<<std::endl;
         std::cout<<"\033[1;39m";
     }
-    else
+    else if (maze[x_s][y_s] == '#' || maze[x_e][y_e] == '#')
+    {
+        std::cout<<"\033[1;31m";
+        std::cout<<"Inputs or Outputs are wall(#)"<<std::endl;
+        std::cout<<"\033[1;39m";
+    }
+    else{
         check_maze(x_s,y_s);
+        show();
+    }
 }
 
 void dfs::check_maze(int x_temp , int y_temp){
@@ -55,20 +63,25 @@ void dfs::check_maze(int x_temp , int y_temp){
             continue;
         }
         else{
-            std::cout<<x<<"  "<<y<<std::endl;
             temp_ans.push_back(std::vector <int> {x , y});
             comp_ans.push_back(std::vector <int> {x , y});
             check_maze(x,y);
         }
     }
-    /*for (auto it{temp_ans.begin()}; it<temp_ans.end() ; it++){
-        if(*it != std::vector(x_e , y_e)){
+    if(check_ans==1)
+        return;
+    for (auto it{temp_ans.end()-1}; it>temp_ans.begin()-1 ; it--){
+        if(*it != std::vector(x_temp , y_temp)){
             temp_ans.erase(it);
             break;
         }
-    }*/
+    }
 }
 void dfs::show(){
+    for (size_t i = 0; i < temp_ans.size(); i++)
+    {
+        std::cout<<temp_ans[i][0]<<" "<<temp_ans[i][1]<<std::endl;
+    }
     if(check_ans==1){
         for (size_t i = 0; i < maze.size(); i++)
         {
@@ -81,19 +94,12 @@ void dfs::show(){
                         break;
                     }
                 }
-                if(check==1){
-                    long int k{};
-                    while (k < 100000000)
-                    {
-                        //std::cout<<"hello"<<std::endl;
-                        k++;
-                    }
-                    //std::cout<<"salam"<<std::endl;
+                if(check==1)
                     std::cout<<"\033[1;45m"<<maze[i][j]<<" "<<"\033[0m";
-                }
-                else
+                else{
+                    //std::cout<<"\033[1;45m"<<maze[i][j]<<" "<<"\033[0m";
                     std::cout<<maze[i][j]<<" ";
-
+                }
             }
             std::cout<<std::endl;
         }

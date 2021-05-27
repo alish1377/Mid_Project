@@ -47,13 +47,12 @@ void appearance(){
     if(algorithm == "dfs"){
         dfs d{maze , inputs};
         d.dfs_maze(maze);
-        d.show();
+
     }
     else if(algorithm == "bfs")
     {
         auto N{std::make_shared<bfs::Node>(x_s , y_s)};
         bfs b{N , maze , inputs};
         b.bfs_maze(maze);
-        //b.Path_result();
     }
 }

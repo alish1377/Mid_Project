@@ -21,24 +21,31 @@ bfs::bfs(std::shared_ptr<Node>proot , std::vector<std::vector<char>>_maze , std:
 }
 
 void bfs::bfs_maze(std::vector<std::vector<char>> maze){
-    proot->x = x_s;
-    proot->y = y_s;
     std::vector<std::shared_ptr <Node>> root ;
     root.push_back(proot);
     all_nodes.push_back(proot);
-    if(maze[x_s][y_s] == '#' || maze[x_e][y_e] == '#'  )
+    proot->x = x_s;
+    proot->y = y_s;
+
+    if(x_s < 0 || x_s > Rows-1 ||  y_s < 0 || y_s > Columns-1)
     {
         std::cout<<"\033[1;31m";
-        std::cout<<"Illegal Inputs or Outpus"<<std::endl;
+        std::cout<<"Input is out of maze range"<<std::endl;
         std::cout<<"\033[1;39m";
     }
-    else
+    else if (maze[x_s][y_s] == '#' || maze[x_e][y_e] == '#')
+    {
+        std::cout<<"\033[1;31m";
+        std::cout<<"Inputs or Outputs are wall(#)"<<std::endl;
+        std::cout<<"\033[1;39m";
+    }
+    else{
         make_bfs_tree(root);
+        Path_result();
+    }
 }
 
 void bfs::make_bfs_tree(std::vector<std::shared_ptr <Node>>level_node){
-    //std::cout<<"hello1"<<std::endl;
-    //std::cout<<level_node[0]->y<<std::endl;
     std::vector<std::shared_ptr <Node>> level;
     int check_ans{};
     for(size_t j{}; j < level_node.size() ; j++){
@@ -49,8 +56,8 @@ void bfs::make_bfs_tree(std::vector<std::shared_ptr <Node>>level_node){
         {
             int x{};
             int y{};
-            x = level_node[j]->x + coordinate[i][0];
-            y = level_node[j]->y + coordinate[i][1];
+            x = static_cast<int>(level_node[j]->x) + coordinate[i][0];
+            y = static_cast<int>(level_node[j]->y) + coordinate[i][1];
             for (size_t k = 0; k < all_nodes.size(); k++)
             {
                 if(all_nodes[k]->x == x &&  all_nodes[k]->y == y){
@@ -58,8 +65,9 @@ void bfs::make_bfs_tree(std::vector<std::shared_ptr <Node>>level_node){
                     break;
                 }
             }
-            if(x < 0 || x >= Rows || y < 0 || y >= Columns)
+            if(x < 0 || x >= Rows || y < 0 || y >= Columns){
                 continue;
+            }
             else if(maze[x][y] == '#')
                 continue;
             else if(check==1){
@@ -83,12 +91,6 @@ void bfs::make_bfs_tree(std::vector<std::shared_ptr <Node>>level_node){
                 break;
             }
         }
-        if(check_ans==0){
-            std::cout<<"\033[1;31m";
-            std::cout<<"Sorry\nThese coordinates that you choose have no answere"<<std::endl;
-            std::cout<<"\033[1;39m";
-            break;
-        }
         if(end_node != nullptr)
             break;
     }
@@ -96,15 +98,22 @@ void bfs::make_bfs_tree(std::vector<std::shared_ptr <Node>>level_node){
         make_bfs_tree(level);
     }
     else if(end_node != nullptr && check_ans==1)
-        Path_result();
+       return;
 }
 
 void bfs::Path_result(){
-    while(end_node){
-        result_path.push_back(end_node);
-        end_node = end_node->pparent;
+    if(all_nodes[all_nodes.size()-1]->x != x_e || all_nodes[all_nodes.size()-1]->y != y_e ){
+        std::cout<<"\033[1;31m";
+        std::cout<<"Sorry\nThese coordinates that you choose have no answere"<<std::endl;
+        std::cout<<"\033[1;39m";
     }
-    show();
+    else{
+        while(end_node){
+            result_path.push_back(end_node);
+            end_node = end_node->pparent;
+        }
+        show();
+    }
 }
 
 void bfs::show(){
