@@ -56,6 +56,7 @@ void appearance(){
         b.bfs_maze(maze);
     }
     std::string ans{};
+    std::cout<<"\033[1;33m";
     std::cout<< "Do you want to solve this maze with Bidirectional algorithms (yes/no) ";
     std::cout<<"\033[1;39m";
     std::cin>>ans;

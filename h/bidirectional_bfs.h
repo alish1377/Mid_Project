@@ -21,8 +21,9 @@ public:
     void start_bfs_tree(std::vector<std::shared_ptr <Node>>);
     void end_bfs_tree(std::vector<std::shared_ptr <Node>>);
     void Path_result();
-    std::shared_ptr<Node> end_node_s{};
-    std::shared_ptr<Node> end_node_e{};
+    void show();
+    std::vector<std::shared_ptr<Node>> all_nodes_2;
+    std::shared_ptr<Node> start_node{};
     std::vector<std::shared_ptr<Node>> level_s_node;
     std::vector<std::shared_ptr<Node>> level_e_node;
     std::shared_ptr<Node> proot_2{};
