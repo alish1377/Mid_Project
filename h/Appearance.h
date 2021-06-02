@@ -4,6 +4,7 @@
 #include <iostream>
 #include "DFS.h"
 #include "BFS.h"
+#include "bidirectional_bfs.h"
 #include <stdio.h>      
 #include <stdlib.h> 
 

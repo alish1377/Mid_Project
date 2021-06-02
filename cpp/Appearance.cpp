@@ -55,4 +55,15 @@ void appearance(){
         bfs b{N , maze , inputs};
         b.bfs_maze(maze);
     }
+    std::string ans{};
+    std::cout<< "Do you want to solve this maze with Bidirectional algorithms (yes/no) ";
+    std::cout<<"\033[1;39m";
+    std::cin>>ans;
+    std::cout<<"\033[0m";
+    if(ans == "yes"){
+        auto start{std::make_shared<bfs::Node>(x_s , y_s)};
+        auto end{std::make_shared<bfs::Node>(x_e , y_e)};
+        bi_bfs bb{start , end , maze , inputs};
+        bb.bfs_maze(maze);
+    }
 }

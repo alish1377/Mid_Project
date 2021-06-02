@@ -20,12 +20,11 @@ bfs::bfs(std::shared_ptr<Node>proot , std::vector<std::vector<char>>_maze , std:
 
 }
 
+
 void bfs::bfs_maze(std::vector<std::vector<char>> maze){
     std::vector<std::shared_ptr <Node>> root ;
     root.push_back(proot);
     all_nodes.push_back(proot);
-    proot->x = x_s;
-    proot->y = y_s;
 
     if(x_s < 0 || x_s > Rows-1 ||  y_s < 0 || y_s > Columns-1)
     {
