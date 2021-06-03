@@ -22,6 +22,12 @@ void dfs::dfs_maze(std::vector<std::vector<char>> maze){
         std::cout<<"Input is out of maze range"<<std::endl;
         std::cout<<"\033[1;39m";
     }
+    else if(x_e < 0 || x_e > Rows-1 ||  y_e < 0 || y_e > Columns-1)
+    {
+        std::cout<<"\033[1;31m";
+        std::cout<<"Output is out of maze range"<<std::endl;
+        std::cout<<"\033[1;39m";
+    }
     else if (maze[x_s][y_s] == '#' || maze[x_e][y_e] == '#')
     {
         std::cout<<"\033[1;31m";
@@ -36,7 +42,7 @@ void dfs::dfs_maze(std::vector<std::vector<char>> maze){
 
 void dfs::check_maze(int x_temp , int y_temp){
     int coordinate[4][2] = {{0,1},{1,0},{0,-1},{-1,0}};
-    int check;
+    int check{};
     for (int i = 0; i < 4; i++)
     {
         if(temp_ans[(temp_ans.size())-1] == std::vector<int>{x_e , y_e}){
@@ -78,10 +84,21 @@ void dfs::check_maze(int x_temp , int y_temp){
     }
 }
 void dfs::show(){
-    for (size_t i = 0; i < temp_ans.size(); i++)
-    {
-        std::cout<<temp_ans[i][0]<<" "<<temp_ans[i][1]<<std::endl;
+    if(temp_ans[temp_ans.size()-1][0] != x_e || temp_ans[temp_ans.size()-1][1] != y_e ){
+        std::cout<<"\033[1;31m";
+        std::cout<<"Sorry\nThese coordinates that you choose have no answere"<<std::endl;
+        std::cout<<"\033[1;39m";
+        return;
     }
+    std::cout<<"\033[1;32m";
+    std::cout<<"Path of DFS algorithm is:  "<<std::endl;
+    std::cout<<"\033[1;39m";
+    std::cout<<"Start point: ";
+    for (size_t i = 0; i < temp_ans.size()-1; i++)
+    {
+        std::cout<<"("<<temp_ans[i][0]<<","<<temp_ans[i][1]<<")"<<std::endl;
+    }
+    std::cout<<"End point: "<<"("<<temp_ans[temp_ans.size()-1][0] <<","<<temp_ans[temp_ans.size()-1][1]<<")"<<std::endl;
     if(check_ans==1){
         for (size_t i = 0; i < maze.size(); i++)
         {

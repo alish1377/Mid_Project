@@ -32,6 +32,12 @@ void bfs::bfs_maze(std::vector<std::vector<char>> maze){
         std::cout<<"Input is out of maze range"<<std::endl;
         std::cout<<"\033[1;39m";
     }
+    else if(x_e < 0 || x_e > Rows-1 ||  y_e < 0 || y_e > Columns-1)
+    {
+        std::cout<<"\033[1;31m";
+        std::cout<<"Output is out of maze range"<<std::endl;
+        std::cout<<"\033[1;39m";
+    }
     else if (maze[x_s][y_s] == '#' || maze[x_e][y_e] == '#')
     {
         std::cout<<"\033[1;31m";

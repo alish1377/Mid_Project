@@ -7,6 +7,7 @@
 #include "bidirectional_bfs.h"
 #include <stdio.h>      
 #include <stdlib.h> 
+#include "make_maze.h"
 
 void appearance(void);
 

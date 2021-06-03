@@ -19,6 +19,12 @@ void bi_bfs::bfs_maze(std::vector<std::vector<char>> maze){
         std::cout<<"Input is out of maze range"<<std::endl;
         std::cout<<"\033[1;39m";
     }
+    else if(x_e < 0 || x_e > Rows-1 ||  y_e < 0 || y_e > Columns-1)
+    {
+        std::cout<<"\033[1;31m";
+        std::cout<<"Output is out of maze range"<<std::endl;
+        std::cout<<"\033[1;39m";
+    }
     else if (maze[x_s][y_s] == '#' || maze[x_e][y_e] == '#')
     {
         std::cout<<"\033[1;31m";
@@ -167,6 +173,12 @@ void bi_bfs::end_bfs_tree(std::vector<std::shared_ptr <Node>>level_node){
 }
 
 void bi_bfs:: Path_result(){
+    if(start_node == nullptr && end_node == nullptr ){
+        std::cout<<"\033[1;31m";
+        std::cout<<"Sorry\nThese coordinates that you choose have no answere"<<std::endl;
+        std::cout<<"\033[1;39m";
+        return;
+    }
     level_e_node.clear();
     level_s_node.clear();
     while(start_node){
@@ -180,6 +192,23 @@ void bi_bfs:: Path_result(){
     show();
 }
 void bi_bfs::show(){
+    std::cout<<"\033[1;35m";
+    std::cout<<"Pass from start to common node"<<std::endl;
+    std::cout<<"\033[1;39m";
+    for (size_t i{}; i < level_s_node.size()-1; i++)
+    {
+        std::cout<<"("<<level_s_node[i] -> x <<","<< level_s_node[i] -> y<<")"<<std::endl;
+    }
+    std::cout<<"("<<level_e_node[level_e_node.size()-1] -> x <<","<< level_e_node[level_e_node.size()-1] -> y<<")"<<std::endl;
+    std::cout<<"\033[1;35m";
+    std::cout<<"Pass from end to common node"<<std::endl;
+    std::cout<<"\033[1;39m";
+    for (size_t i{}; i < level_e_node.size()-1; i++)
+    {
+        std::cout<<"("<<level_e_node[i] -> x <<","<< level_e_node[i] -> y<<")"<<std::endl;
+    }
+    std::cout<<"("<<level_e_node[level_e_node.size()-1] -> x <<","<< level_e_node[level_e_node.size()-1] -> y<<")"<<std::endl;
+
     for (size_t i = 0; i < maze.size(); i++)
     {
         for (size_t j = 0; j < maze[i].size(); j++)
