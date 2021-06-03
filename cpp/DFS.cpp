@@ -3,7 +3,6 @@
 dfs::dfs(std::vector<std::vector<char>>_maze , std::array<int,4> _inputs)
     : maze(_maze)
 {
-    std::cout<<"dfs constructor"<<std::endl;
     auto it = _inputs.begin();
     x_s = *(it);
     y_s = *(it+1);

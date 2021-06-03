@@ -8,7 +8,6 @@ bfs::Node::Node(int x_s , int y_s){
 bfs::bfs(std::shared_ptr<Node>proot , std::vector<std::vector<char>>_maze , std::array<int,4> _inputs)
     : maze(_maze)
 {
-    std::cout<<"bfs constructor"<<std::endl;
     this->proot = proot;
     auto it = _inputs.begin();
     x_s = *(it);

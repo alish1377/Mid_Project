@@ -1,7 +1,10 @@
 #include "make_maze.h"
+#include<time.h>
+
 
 std::vector<std::vector<char>>make_maze(size_t Rows , size_t Columns){
     std::vector<std::vector<char>> maze(Rows,std::vector<char>(Columns , '0'));
+    std::srand(time(0));
     for(size_t i{}; i< maze.size() ; i++){
         for(size_t j{}; j< maze[i].size() ; j++){
             int num = (std::rand()) % 100;
