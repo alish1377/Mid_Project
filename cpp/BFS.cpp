@@ -17,7 +17,6 @@ bfs::bfs(std::shared_ptr<Node>proot , std::vector<std::vector<char>>_maze , std:
     y_e =*(it+3);
     Rows = maze.size();
     Columns = maze[0].size();
-
 }
 
 
@@ -122,6 +121,18 @@ void bfs::Path_result(){
 }
 
 void bfs::show(){
+    maze[x_s][y_s]='S';
+    maze[x_e][y_e]='E';
+    std::cout<<"\033[1;32m";
+    std::cout<<"Path of BFS algorithm is:  "<<std::endl;
+    std::cout<<"\033[1;39m";
+    std::cout<<"Start point: ";
+    for (size_t i{result_path.size()-1}; i > 0; i--)
+    {
+        std::cout<<"("<<result_path[i]->x <<","<<result_path[i]->y <<")"<<std::endl;
+    }
+    std::cout<<"End point: "<<"("<<result_path[0] ->x <<","<<result_path[0]->y<<")"<<std::endl;
+    std::cout<<"\033[0m";
     for (size_t i = 0; i < maze.size(); i++)
     {
         for (size_t j = 0; j < maze[i].size(); j++)

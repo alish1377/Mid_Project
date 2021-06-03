@@ -84,6 +84,8 @@ void dfs::check_maze(int x_temp , int y_temp){
     }
 }
 void dfs::show(){
+    maze[x_s][y_s]='S';
+    maze[x_e][y_e]='E';
     if(temp_ans[temp_ans.size()-1][0] != x_e || temp_ans[temp_ans.size()-1][1] != y_e ){
         std::cout<<"\033[1;31m";
         std::cout<<"Sorry\nThese coordinates that you choose have no answere"<<std::endl;
@@ -99,6 +101,7 @@ void dfs::show(){
         std::cout<<"("<<temp_ans[i][0]<<","<<temp_ans[i][1]<<")"<<std::endl;
     }
     std::cout<<"End point: "<<"("<<temp_ans[temp_ans.size()-1][0] <<","<<temp_ans[temp_ans.size()-1][1]<<")"<<std::endl;
+    std::cout<<"\033[0m";
     if(check_ans==1){
         for (size_t i = 0; i < maze.size(); i++)
         {
@@ -114,7 +117,6 @@ void dfs::show(){
                 if(check==1)
                     std::cout<<"\033[1;45m"<<maze[i][j]<<" "<<"\033[0m";
                 else{
-                    //std::cout<<"\033[1;45m"<<maze[i][j]<<" "<<"\033[0m";
                     std::cout<<maze[i][j]<<" ";
                 }
             }

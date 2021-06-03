@@ -192,23 +192,25 @@ void bi_bfs:: Path_result(){
     show();
 }
 void bi_bfs::show(){
-    std::cout<<"\033[1;35m";
-    std::cout<<"Pass from start to common node"<<std::endl;
+    maze[x_s][y_s]='S';
+    maze[x_e][y_e]='E';
+    std::cout<<"\033[0;33m";
+    std::cout<<"Pass from common node to start"<<std::endl;
     std::cout<<"\033[1;39m";
     for (size_t i{}; i < level_s_node.size()-1; i++)
     {
         std::cout<<"("<<level_s_node[i] -> x <<","<< level_s_node[i] -> y<<")"<<std::endl;
     }
-    std::cout<<"("<<level_e_node[level_e_node.size()-1] -> x <<","<< level_e_node[level_e_node.size()-1] -> y<<")"<<std::endl;
-    std::cout<<"\033[1;35m";
-    std::cout<<"Pass from end to common node"<<std::endl;
+    std::cout<<"("<<level_s_node[level_s_node.size()-1] -> x <<","<< level_s_node[level_s_node.size()-1] -> y<<")"<<std::endl;
+    std::cout<<"\033[0;33m";
+    std::cout<<"Pass from common node to end"<<std::endl;
     std::cout<<"\033[1;39m";
     for (size_t i{}; i < level_e_node.size()-1; i++)
     {
         std::cout<<"("<<level_e_node[i] -> x <<","<< level_e_node[i] -> y<<")"<<std::endl;
     }
     std::cout<<"("<<level_e_node[level_e_node.size()-1] -> x <<","<< level_e_node[level_e_node.size()-1] -> y<<")"<<std::endl;
-
+    std::cout<<"\033[0m";
     for (size_t i = 0; i < maze.size(); i++)
     {
         for (size_t j = 0; j < maze[i].size(); j++)
@@ -220,16 +222,22 @@ void bi_bfs::show(){
                     flag_1 = 1;
                     break;
                 }
-                else if ((level_e_node[k] -> x) == static_cast<int>(i) && (level_e_node[k] -> y) == static_cast<int>(j))
-                {
-                   flag_2 = 1; 
+            }
+            if(flag_1==0){
+                for (size_t k{}; k < level_e_node.size() ; k++){
+                    if( (level_e_node[k] -> x) == static_cast<int>(i) && (level_e_node[k] -> y) == static_cast<int>(j) ){
+                        flag_2 = 1;
+                        break;
+                    }
                 }
             }
             if(flag_1==1){
                 std::cout<<"\033[1;45m"<<maze[i][j]<<" "<<"\033[0m";
+                flag_1 = 0;
             }
             else if (flag_2==1){
                 std::cout<<"\033[1;44m"<<maze[i][j]<<" "<<"\033[0m";
+                flag_2 = 0;
             }
 
             else

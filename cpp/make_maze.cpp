@@ -5,7 +5,7 @@ std::vector<std::vector<char>>make_maze(size_t Rows , size_t Columns){
     for(size_t i{}; i< maze.size() ; i++){
         for(size_t j{}; j< maze[i].size() ; j++){
             int num = (std::rand()) % 100;
-            if(num>=70){
+            if(num>=68){
                 maze[i][j] = '#';
             }
             else{
