@@ -18,23 +18,21 @@ public:
     bfs(std::shared_ptr<Node>root,std::vector<std::vector<char>> , std::array<int,4>);
     void bfs_maze(std::vector<std::vector<char>> maze);
     void make_bfs_tree(std::vector<std::shared_ptr <Node>>);
-    void solve_bfs_tree();
     void Path_result();
     void show();
     
     std::shared_ptr<Node> proot{};
     std::shared_ptr<Node> end_node{};
     std::vector<std::shared_ptr<Node>> result_path;
-    std::vector<std::shared_ptr<Node>> level_node;
     std::vector<std::shared_ptr<Node>> all_nodes;
 protected:
     std::vector<std::vector<char>>maze;
-    int Rows;
-    int Columns;
-    int x_s;
-    int x_e;
-    int y_s;
-    int y_e;
+    int Rows{};
+    int Columns{};
+    int x_s{};
+    int x_e{};
+    int y_s{};
+    int y_e{};
 };
 
 #endif 

@@ -21,13 +21,13 @@ public:
 
 private:
     std::vector<std::vector<char>>maze;
-    int Rows;
-    int Columns;
-    int x_s;
-    int x_e;
-    int y_s;
-    int y_e;
-    int check_ans;
+    int Rows{};
+    int Columns{};
+    int x_s{};
+    int x_e{};
+    int y_s{};
+    int y_e{};
+    int check_ans{};
 };
 
 #endif 

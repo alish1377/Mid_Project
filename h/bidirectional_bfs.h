@@ -2,20 +2,11 @@
 #define _BIDIRECTIONAL_BFS_
 
 #include <iostream>
-#include "bfs.h"
+#include "BFS.h"
 
 
 class bi_bfs : public bfs{
 public:
-    /*class Node_2{
-        public:
-            int x;
-            int y;
-            std::shared_ptr <Node_2> pparent{nullptr};
-            std::vector<std::shared_ptr <Node_2>> children = {nullptr , nullptr , nullptr , nullptr};
-            Node_2(int, int);
-    };*/
-
     bi_bfs(std::shared_ptr<Node>,std::shared_ptr<Node>,std::vector<std::vector<char>>,std::array<int,4>);
     void bfs_maze(std::vector<std::vector<char>> maze);
     void start_bfs_tree(std::vector<std::shared_ptr <Node>>);
